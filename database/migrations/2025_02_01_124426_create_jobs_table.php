@@ -13,9 +13,20 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignIdFor(\App\Models\User::class);
             $table->foreignIdFor(\App\Models\Proposal::class);
+            $table->string('title');
+            $table->text('description');
+
+
+            $table->foreignId('client_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('agent_id')->nullable()->constrained('users')->onDelete('set null');
+
+
+            $table->enum('status', ['pending', 'in-progress', 'completed'])->default('pending');
+
+
+            $table->unsignedTinyInteger('rating')->nullable(); // 1-5 rating system
+
             $table->timestamps();
         });
     }
