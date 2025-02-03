@@ -11,3 +11,4 @@ Route::get('/', function () {
 Route::get('/get-help');
 
 Route::get('/admin-header',[AdminController::class, 'index']);
+Route::get('/admin-sidebar',[AdminController::class,'sidebar']);

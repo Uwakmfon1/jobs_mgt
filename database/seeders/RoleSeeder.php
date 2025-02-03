@@ -15,20 +15,17 @@ class RoleSeeder extends Seeder
     {
         Role::factory()->create([
             'id' => 1,
-            'name' => 'admin',
-            'timestamp'=>now()
+            'name' => 'admin'
         ]);
 
         Role::factory()->create([
             'id' => 2,
-            'name' => 'client',
-            'timestamp'=>now()
+            'name' => 'client'
         ]);
 
         Role::factory()->create([
             'id' => 3,
-            'name' => 'agent',
-            'timestamp'=>now()
+            'name' => 'agent'
         ]);
     }
 }

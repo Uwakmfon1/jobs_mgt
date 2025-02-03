@@ -11,4 +11,12 @@ class AdminController extends Controller
     {
         return view('admin.admin-header');
     }
+
+    public function sidebar()
+    {
+        return view('admin.admin-sidebar');
+    }
+
+    
 }
+

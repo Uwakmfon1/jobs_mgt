@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\Job::class);
+            $table->foreignId('client_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('agent_id')->constrained('users')->onDelete('cascade');
+            $table->unsignedSmallInteger('rating');
+            $table->text('review');
             $table->timestamps();
         });
     }

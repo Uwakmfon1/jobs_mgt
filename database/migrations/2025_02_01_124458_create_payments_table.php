@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+
+            $table->string('title');
+            $table->foreignId(\App\Models\Category::class);
+            $table->string('description');
+            $table->foreignId('client_id')->constrained('users')->onDelete('cascade');
+            $table->decimal('amount',10,2);
             $table->timestamps();
         });
     }

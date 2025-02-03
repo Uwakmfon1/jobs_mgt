@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(\App\Models\Proposal::class);
             $table->string('title');
+            $table->foreignIdFor(\App\Models\Category::class);
             $table->text('description');
 
 

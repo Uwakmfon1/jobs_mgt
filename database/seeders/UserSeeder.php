@@ -21,12 +21,11 @@ class UserSeeder extends Seeder
             'email' => 'admin@example.com',
             'email_verified_at'=>now(),
             'password' => bcrypt('admin123'),
-            'rating'=>'null',
+            'rating'=>null,
             'profile_details'=>fake()->text(20),
-            'remember_token'=>Str::random(10),
-            'timestamp'=>now()
+            'remember_token'=>Str::random(10)
         ]);
 
-        User::factory()->count(10)->create();
+        // User::factory()->count(10)->create();
     }
 }
