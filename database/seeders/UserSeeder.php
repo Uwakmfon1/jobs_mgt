@@ -15,18 +15,30 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        //Already seeded these two comment them out if you add another seeder
         User::factory()->create([
             'role_id' => 1,
             'name' => 'Admin User',
             'email' => 'admin@example.com',
             'email_verified_at'=>now(),
             'password' => bcrypt('admin123'),
-            'rating'=>'null',
+            'rating'=>null,
             'profile_details'=>fake()->text(20),
-            'remember_token'=>Str::random(10),
-            'timestamp'=>now()
+            'remember_token'=>Str::random(10)
         ]);
 
-        User::factory()->count(10)->create();
+        User::factory()->create([
+            'role_id' => 2,
+            'name' => 'Jane Doe',
+            'email' => 'janedoe1@ex.com',
+            'email_verified_at'=>now(),
+            'password' => bcrypt(value: 'janedoe1'),
+            'rating'=>null,
+            'profile_details'=>fake()->text(20),
+            'remember_token'=>Str::random(10)
+        ]);
+
+
+        // User::factory()->count(10)->create();
     }
 }
