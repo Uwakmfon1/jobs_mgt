@@ -1,1 +1,9 @@
 *.sqlite*
+database/seeders/UserSeeder.php
+
+# git rm --cached database/seeders/UserSeeder.php   (to remove git tracking)
+# git commit -m "Ignored UserSeeder.php"
+# git push origin main
+
+# git status --ignored  (to confirm if it is being ignored)
+

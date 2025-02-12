@@ -37,6 +37,17 @@
                                     >
                                         Dashboard
                                     </a>
+
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <x-responsive-nav-link :href="route('logout')"
+                                                onclick="event.preventDefault();
+                                                            this.closest('form').submit();">
+                                            {{ __('Log Out') }}
+                                        </x-responsive-nav-link>
+                                    </form>
+
                                 @else
                                     <a
                                         href="{{ route('login') }}"
@@ -44,6 +55,8 @@
                                     >
                                         Log in
                                     </a>
+
+
 
                                     @if (Route::has('register'))
                                         <a
@@ -165,6 +178,8 @@
                             </div>
                         </div>
                     </main>
+
+
 
                     <footer class="py-16 text-center text-sm text-black dark:text-white/70">
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})

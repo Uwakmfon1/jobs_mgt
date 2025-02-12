@@ -9,14 +9,18 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.admin-header');
+        return view('admin.dashboard');
     }
 
     public function sidebar()
     {
-        return view('admin.admin-sidebar');
+        return view('admin.admin-layout');
     }
 
-    
+    public function login()
+    {
+        //code goes in here
+    }
+
 }
 

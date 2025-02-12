@@ -60,4 +60,11 @@ class User extends Authenticatable
     public function agentPayment(){
        return $this->hasMany(Payment::class, 'agent_id');
     }
+
+    // public function isAdmin(){
+    //     return $this->role === 'admin';
+    // }
+    public function isAdmin(){
+        return $this->belongsTo(Role::class,'role_id')->where('name','admin');
+    }
 }
