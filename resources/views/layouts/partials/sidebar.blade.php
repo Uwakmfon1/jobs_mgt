@@ -50,13 +50,13 @@
                 </nav>
             </div>
             <div class="sb-sidenav-menu-heading">Manage Users</div>
-            <a class="nav-link" href="#">
-                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                Charts
+            <a class="nav-link" href="{{ url('/admin/clients') }}">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
+                Clients
             </a>
             <a class="nav-link" href="#">
-                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                Tables
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-user"></i></div>
+                Agents
             </a>
         </div>
     </div>

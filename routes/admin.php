@@ -23,6 +23,9 @@ Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
     Route::get('users/{id}/jobs',[ManageUsersController::class,'job'])->name('fetch-user-job');
     Route::post('user/{id}/reset',[ManageUsersController::class,'password_reset'])->name('password-reset');
 
+    Route::get('/clients',[ManageUsersController::class,'get_clients'])->name('list-clients');
+    Route::get('/clients/{id}',[ManageUsersController::class,'get_client'])->name('client');
+
 
 
 //    GET    /api/admin/users List all users
