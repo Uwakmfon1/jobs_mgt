@@ -2,39 +2,16 @@
 
 @section('content')
 
-    <br><br>
-    <table class="table table-striped table-hover table-bordered">
-        <thead class="thead-dark">
-        <tr>
-            <th>Name</th>
-            <th>Email Address</th>
-            <th>Profile Details</th>
-        </tr>
-        </thead>
-        <tbody>
-{{--            @php--}}
-{{--                foreach ($client as $client_details){--}}
-{{--                    var_dump($client);--}}
-{{--                }--}}
-{{--            @endphp--}}
+<br><br>
 
         @foreach($client as $client_details)
-
-                <tr>
-                    <td>{{ $client_details->name }}</td>
-                    <td>{{ $client_details->email }}</td>
-                    <td>{{ $client_details->profile_details }}</td>
-
-                </tr>
-                <h3>Description of job</h3>
-                <p>{{ $data }}</p>
+        <h5>Name: {{ $client_details->name }}</h5>
+        <h5>Email: {{ $client_details->email }}</h5>
+        <h5>Profile Details: {{ $client_details->profile_details }}</h5>
+        <br>
+        <h5>Description of job</h5>
+        <textarea name="#" id="#">{{ $client_details->description }}</textarea>
         @endforeach
 
-        </tbody>
-    </table>
-
-    <textarea name="" id="" cols="30" rows="10">
-        {{ $data }}
-    </textarea>
 @endsection
 
