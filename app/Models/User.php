@@ -48,9 +48,14 @@ class User extends Authenticatable
         ];
     }
 
-    public function job()
+    public function jobs()
     {
-        return $this->hasMany(Job::class);
+        return $this->hasMany(Job::class,'client_id');
+    }
+
+    public function latestJob()
+    {
+        return $this->hasOne(Job::class,'client_id')->latestOfMany();
     }
 
     public function clientPayment(){
