@@ -64,7 +64,7 @@ class ManageUsersController extends Controller
 
     public function get_clients()
     {
-        $clients = User::with(relations: ['latestJob'])->where('role_id',2)->get();
+        $clients = User::with(['latestJob'])->where('role_id',2)->get();
         $clients->transform(function ($user) {
             $user->job_status = $user->latestJob->status ?? 'Coming Soon';
             return $user;

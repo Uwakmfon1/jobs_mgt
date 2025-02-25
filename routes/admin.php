@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\Admin\AdminController;
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\ManageJobsController;
 use App\Http\Controllers\ManageUsersController;
 
 Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
@@ -26,7 +27,9 @@ Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
     Route::get('/clients',[ManageUsersController::class,'get_clients'])->name('list-clients');
     Route::get('/clients/{id}',[ManageUsersController::class,'get_client'])->name('client');
 
-
+    // Manage Jobs
+    Route::get('/pending-contracts',[ManageJobsController::class,'pending_contracts'])->name('pending-contracts');
+    Route::get('/ongoing-contracts',[ManageJobsController::class,'ongoing-contracts'])->name('ongoing-contracts');
 
 //    GET    /api/admin/users List all users
 //GET  /api/admin/users/{id}
