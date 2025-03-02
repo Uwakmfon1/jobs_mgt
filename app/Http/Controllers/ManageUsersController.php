@@ -64,7 +64,7 @@ class ManageUsersController extends Controller
 
     public function get_clients()
     {
-        $clients = User::with(relations: ['latestJob'])->where('role_id',2)->get();
+        $clients = User::with(['latestJob'])->where('role_id',2)->get();
         $clients->transform(function ($user) {
             $user->job_status = $user->latestJob->status ?? 'Coming Soon';
             return $user;
@@ -90,16 +90,36 @@ class ManageUsersController extends Controller
                         ->join('jobs','users.id','jobs.client_id')
                         ->where('users.id',$id)
                         ->where('client_id',$id)
-                       ->select(columns: ['users.*','jobs.*'])
+                        ->select(columns: ['users.*','jobs.*'])
                         ->get();
 
 
         $description = collect($data)->pluck('description');
+
         return view('admin.pages.client',[
            'client'=>$data,
             'description'=>$description,
             'id'=>$id
         ]);
 
+    }
+
+    public function get_agents()
+    {
+        $agents = User::where('role_id','=',3)->get();
+
+        return view('admin.pages.agents',[
+            'agents'=>$agents
+        ]);
+    }
+
+    
+    public function get_agent($id)
+    {
+        $agent = User::where('id','=',$id)->get();
+
+        return view('admin.pages.agent',[
+            'agent'=>$agent
+        ]);
     }
 }

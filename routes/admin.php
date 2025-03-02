@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\Admin\AdminController;
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\ManageJobsController;
 use App\Http\Controllers\ManageUsersController;
 
 Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
@@ -23,8 +24,27 @@ Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
     Route::get('users/{id}/jobs',[ManageUsersController::class,'job'])->name('fetch-user-job');
     Route::post('user/{id}/reset',[ManageUsersController::class,'password_reset'])->name('password-reset');
 
+
     Route::get('/clients',[ManageUsersController::class,'get_clients'])->name('list-clients');
     Route::get('/clients/{id}',[ManageUsersController::class,'get_client'])->name('client');
+    Route::get('/agents',[ManageUsersController::class,'get_agents'])->name('get-agents');
+    Route::get('/agents/{id}',[ManageUsersController::class,'get_agent'])->name('get-agent');
+
+    // Manage Jobs
+    Route::get('/pending-contracts',[ManageJobsController::class,'pending_contracts'])->name('pending-contracts');
+    Route::get('/ongoing-contracts',[ManageJobsController::class,'ongoing_contracts'])->name('ongoing-contracts');
+    Route::get('/ongoing-contracts-staging',[ManageJobsController::class,'ongoing_contracts_staging'])->name('ongoing-contracts-staging');
+
+    Route::get('/completed-contracts',[ManageJobsController::class,'completed_contracts'])->name('completed-contracts');
+
+    Route::get('/pending-contracts/{id}/more',[ManageJobsController::class,'pending_contracts_more_section'])->name('pending-contracts-more-section');
+
+    Route::get('/ongoing-contracts-staging/{id}',[ManageJobsController::class, 'ongoing_contracts_staging']);
+
+    Route::post('/moved-to-ongoing/{id}',[ManageJobsController::class, 'moved_to_ongoing']);
+
+    Route::post('/mark-as-completed/{id}',[ManageJobsController::class,'markAsCompleted'])->name('mark-as-completed');
+
 
 
 

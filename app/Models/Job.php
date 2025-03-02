@@ -10,9 +10,12 @@ class Job extends Model
     /** @use HasFactory<\Database\Factories\JobFactory> */
     use HasFactory;
 
+    protected $fillable = ['status'];
+
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
     public function user()
     {
         return $this->belongsTo(User::class);
