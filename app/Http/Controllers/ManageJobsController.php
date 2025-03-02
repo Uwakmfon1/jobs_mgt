@@ -67,6 +67,18 @@ class ManageJobsController extends Controller
         ]);
     }
 
+    public function markAsCompleted(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'id'=>'required',
+            'status'=>'required|string'
+        ]);
+
+        $validated = $validator->validated();
+
+        Job::where('id','=',$validated['id'])->update(['status' => $validated['status']]);
+        return redirect()->route('completed-contracts');
+    }
 
     public function pending_contracts_more_section($id)
     {

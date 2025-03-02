@@ -44,7 +44,6 @@
         <h4>Client Response Satisfactory?</h4>
         <div>
             @foreach ($data as $datum)
-                {{-- @dd($datum->id) --}}
                 <form id="submitForm" action="{{ url('admin/moved_to_ongoing/' . $datum->id) }}" method="post">
                     @csrf
                         <input type="hidden" value="in-progress" name="status">

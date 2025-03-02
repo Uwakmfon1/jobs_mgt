@@ -34,6 +34,7 @@ Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
     Route::get('/pending-contracts',[ManageJobsController::class,'pending_contracts'])->name('pending-contracts');
     Route::get('/ongoing-contracts',[ManageJobsController::class,'ongoing_contracts'])->name('ongoing-contracts');
     Route::get('/ongoing-contracts-staging',[ManageJobsController::class,'ongoing_contracts_staging'])->name('ongoing-contracts-staging');
+
     Route::get('/completed-contracts',[ManageJobsController::class,'completed_contracts'])->name('completed-contracts');
 
     Route::get('/pending-contracts/{id}/more',[ManageJobsController::class,'pending_contracts_more_section'])->name('pending-contracts-more-section');
@@ -41,6 +42,10 @@ Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
     Route::get('/ongoing-contracts-staging/{id}',[ManageJobsController::class, 'ongoing_contracts_staging']);
 
     Route::post('/moved-to-ongoing/{id}',[ManageJobsController::class, 'moved_to_ongoing']);
+
+    Route::post('/mark-as-completed/{id}',[ManageJobsController::class,'markAsCompleted'])->name('mark-as-completed');
+
+
 
 
 //    GET    /api/admin/users List all users
