@@ -2,6 +2,11 @@
 
 @section('content')
     <br>
+    @if (count($jobs) <=0 )
+    <h3>No completed Contracts yet</h3>
+    @else
+    <h3>Completed Jobs</h3>
+
     <table class="table table-striped table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
@@ -29,4 +34,7 @@
 
         </tbody>
     </table>
+
+    @endif
+
 @endsection

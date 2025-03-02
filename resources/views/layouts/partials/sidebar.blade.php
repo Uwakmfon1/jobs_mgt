@@ -7,6 +7,8 @@
                 Dashboard
             </a>
             <div class="sb-sidenav-menu-heading">Manage Jobs</div>
+
+            {{-- collapsible nav --}}
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                 Current Jobs
@@ -18,7 +20,14 @@
                     <a class="nav-link" href="{{ url('admin/ongoing-contracts') }}">Ongoing Contracts</a>
                 </nav>
             </div>
-            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+
+            <a class="nav-link" href="{{ url('admin/completed-contracts') }}">
+                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                Completed Jobs
+            </a>
+
+            {{-- collapsible nav --}}
+            {{-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                 Completed Jobs
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -48,13 +57,15 @@
                         </nav>
                     </div>
                 </nav>
-            </div>
+            </div> --}}
+
+
             <div class="sb-sidenav-menu-heading">Manage Users</div>
             <a class="nav-link" href="{{ url('/admin/clients') }}">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                 Clients
             </a>
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ url('admin/agents') }}">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-user"></i></div>
                 Agents
             </a>
