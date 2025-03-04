@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Job extends Model
 {
@@ -12,7 +13,19 @@ class Job extends Model
 
     protected $fillable = ['status'];
 
-    public function category(){
+    // protected function casts()
+    // {
+    //     return [
+    //         'created_at' => 'datetime:d-m-y',
+    //     ];
+    // }
+    protected function serializeDate(DateTimeInterface $date): string
+    {
+        return $date->format('d-m-Y');
+    }
+
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 

@@ -43,8 +43,11 @@ Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
 
     Route::post('/moved-to-ongoing/{id}',[ManageJobsController::class, 'moved_to_ongoing']);
 
+    Route::post('/removed-from-pending/{id}',[ManageJobsController::class,'removed_from_pending'])->name('removed_from_pending');
+
     Route::post('/mark-as-completed/{id}',[ManageJobsController::class,'markAsCompleted'])->name('mark-as-completed');
 
+    Route::post('/send-pending-email/{id}',[ManageJobsController::class,'sendPendingEmail'])->name('send-pending-email');
 
 
 

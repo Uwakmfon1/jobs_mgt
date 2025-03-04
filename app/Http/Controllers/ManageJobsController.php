@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Job;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Mail\PendingPaymentMail;
 // use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class ManageJobsController extends Controller
 {
+
     public function pending_contracts()
     {
             $jobs = DB::table('jobs')
@@ -82,14 +86,11 @@ class ManageJobsController extends Controller
 
     public function pending_contracts_more_section($id)
     {
-        // join the proposal's table with the jobs table and likely the user's table
-        // return a page with the data
-
-        $data = DB::table('jobs')->join('proposals','jobs.proposal_id', 'proposals.id')
-                // ->select('jobs.*','proposal.*')
+        $data = DB::table('jobs')
+            ->join('proposals','jobs.proposal_id', 'proposals.id')
+            ->join('users','jobs.client_id','users.id')
                 ->where('jobs.id','=',$id)
                 ->get();
-
         return view('admin.pages.pending-contracts-more-section',[
             'data'=>$data
         ]);
@@ -119,6 +120,35 @@ class ManageJobsController extends Controller
 
         return redirect()->route('pending-contracts');
    }
+
+   public function sendPendingEmail(Request $request, $userId, Job $job)
+   {
+
+    $user = User::where('id','=',value: $userId)->first();
+    // dd($user->name);
+    try{
+        Mail::to($user->email)->send(new PendingPaymentMail($userId,$job));
+        return redirect()->back()->with('success','Mail Sent Successfully');
+    }catch(\Exception $e){
+        return redirect()->back()->with('error', 'Mail could not be sent. Error: '.$e->getMessage());
+    }
+    }
+
+    public function removed_from_pending(Request $request)
+    {
+        try{
+            $validator = Validator::make($request->all(),[
+                'id'=>'required',
+                'proposal_id'=>'required',
+                'status'=>'required|string|max:255'
+            ]);
+            $validated = $validator->validated();
+            Job::where('proposal_id','=',$validated['proposal_id'])->delete();
+            return redirect('admin/pending-contracts')->with('success','Pending job deleted');
+        }catch(Exception $e){
+            return redirect()->back()->with('error', " Pending job couldn't be deleted: " . $e->getMessage());
+        }
+    }
 
 }
 

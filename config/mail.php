@@ -14,8 +14,8 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'log'),
-
+    // 'default' => env('MAIL_MAILER', 'log'),
+    'default' => env('MAIL_MAILER',  'smtp'),
     /*
     |--------------------------------------------------------------------------
     | Mailer Configurations
@@ -37,6 +37,9 @@ return [
 
     'mailers' => [
 
+       'mailgun'=>[
+        'transport' => 'mailgun',
+       ] ,
         'smtp' => [
             'transport' => 'smtp',
             'scheme' => env('MAIL_SCHEME'),
@@ -53,22 +56,12 @@ return [
             'transport' => 'ses',
         ],
 
-        'postmark' => [
-            'transport' => 'postmark',
-            // 'message_stream_id' => env('POSTMARK_MESSAGE_STREAM_ID'),
-            // 'client' => [
-            //     'timeout' => 5,
-            // ],
-        ],
+
 
         'resend' => [
             'transport' => 'resend',
         ],
 
-        'sendmail' => [
-            'transport' => 'sendmail',
-            'path' => env('MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -bs -i'),
-        ],
 
         'log' => [
             'transport' => 'log',
