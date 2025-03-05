@@ -31,6 +31,8 @@ Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
     Route::get('/agents/{id}',[ManageUsersController::class,'get_agent'])->name('get-agent');
 
     // Manage Jobs
+    Route::get('/proposed-contracts',[ManageJobsController::class,'proposed_contracts'])->name('proposed-contracts');
+    Route::get('/proposed-contracts/{id}',[ManageJobsController::class,'proposed_contract'])->name('proposed-contract');
     Route::get('/pending-contracts',[ManageJobsController::class,'pending_contracts'])->name('pending-contracts');
     Route::get('/ongoing-contracts',[ManageJobsController::class,'ongoing_contracts'])->name('ongoing-contracts');
     Route::get('/ongoing-contracts-staging',[ManageJobsController::class,'ongoing_contracts_staging'])->name('ongoing-contracts-staging');

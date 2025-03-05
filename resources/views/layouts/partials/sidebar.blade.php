@@ -16,6 +16,8 @@
             </a>
             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
+
+                    <a class="nav-link" href="{{ url('admin/proposed-contracts') }}">Proposals</a>
                     <a class="nav-link" href="{{ url('admin/pending-contracts') }}">Pending Contracts</a>
                     <a class="nav-link" href="{{ url('admin/ongoing-contracts') }}">Ongoing Contracts</a>
                 </nav>

@@ -5,15 +5,41 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\Job;
 use App\Models\User;
+use App\Models\Proposal;
 use Illuminate\Http\Request;
-use App\Mail\PendingPaymentMail;
 // use Illuminate\Support\Facades\Request;
+use App\Mail\PendingPaymentMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class ManageJobsController extends Controller
 {
+
+    public function proposed_contracts()
+    {
+        $proposals= Proposal::all();
+
+        return view('admin.pages.proposed-contracts',[
+            'proposals'=>$proposals
+        ]);
+    }
+
+    public function proposed_contract($id)
+    {
+        $proposal = Proposal::join('users','proposals.user_id','=','users.id')
+        ->select('proposals.*')
+        ->where('proposals.id', '=',$id)->first();
+        
+
+        $agents = User::where('role_id','=',3)->get();
+        
+
+        return view('admin.pages.proposed-contract',[
+            'proposal'=>$proposal,
+            'agents'=>$agents,
+        ]);
+    }
 
     public function pending_contracts()
     {
