@@ -30,14 +30,18 @@ class ManageJobsController extends Controller
         $proposal = Proposal::join('users','proposals.user_id','=','users.id')
         ->select('proposals.*')
         ->where('proposals.id', '=',$id)->first();
-        
 
-        $agents = User::where('role_id','=',3)->get();
-        
+        $agents = User::where('role_id','=',3)
+        ->where('profile_details','LIKE',`%$proposal->profile_details%`)
+        ->get();
+
+        dd($agents);
+        $job = Job::where('proposal_id','=',$id)->first();
 
         return view('admin.pages.proposed-contract',[
             'proposal'=>$proposal,
-            'agents'=>$agents,
+            'agent'=>$agents,
+            'job'=>$job
         ]);
     }
 

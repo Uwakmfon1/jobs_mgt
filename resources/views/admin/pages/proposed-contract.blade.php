@@ -2,15 +2,22 @@
 
 @section('content')
     <br><br>
-  <h1>Welcome to Proposed Contracts</h1>
+    {{-- <h1>WProposed Contracts</h1> --}}
 
-  <div>
-    <h5>{{ $proposal->name }}</h5>
-      <a href="#" class="btn btn-secondary">
-          Assign Agent
-      </a>
-      Learn how to use ajax to display agent when the button is clicked
-  </div>
+    <div>
+        {{-- <center> --}}
+            <h5>{{ $proposal->name }}</h5>
+            <p>{{ $job->description }}</p>
 
-
+            <h5>Assign Agent to the Job</h5>
+            <h6>Agent(s) with the Expertise:</h6>
+            <ul>
+                @dd($agent)
+                <li>{{ $agent->name }}</li>
+            </ul>
+            <a href="#" class="btn btn-secondary">
+                Assign Agent
+            </a>
+        {{-- </center> --}}
+    </div>
 @endsection
